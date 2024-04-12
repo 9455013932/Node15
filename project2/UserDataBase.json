@@ -1,0 +1,31 @@
+[
+    {
+        "id":1,
+        "name":"john doe",
+        "email" : "john@gmail.com",
+        "gender":"male"
+
+    },
+    {
+        "id":2,
+        "name":"jane doe",
+        "email" : "jane@gmail.com",
+        "gender":"female"
+
+ 
+    },
+    {
+        "id":3,
+        "name":"john doe",
+        "email" : "john@gmail.com",
+        "gender":"male"
+
+
+    },
+    {
+        "id":4,
+        "name":"jane doe",
+        "email" : "jane@gmail.com",
+        "gender":"female"
+    }
+]
