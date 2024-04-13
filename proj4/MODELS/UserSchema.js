@@ -10,8 +10,8 @@ const userSchema=new mongoose.Schema({
         required:true,
 
     },
-    age:{
-        type:Number,
+    DOB:{
+        type:String,
     },
     gender:{
         type:String
@@ -19,6 +19,18 @@ const userSchema=new mongoose.Schema({
     email: {
         type: String,
         required: true,
+        unique: true
+    },
+    refreshToken:{
+        type:String,
+
+    },
+    profilePicture:{
+        
+    },
+    contactInfo: {
+        type: Number,
+        
         unique: true
     },
 
