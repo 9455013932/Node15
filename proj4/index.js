@@ -26,12 +26,9 @@ function authenticateToken(req, res, next) {
 
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
-        if (id && decoded.id !== id) {
-            // return res.status(401).json({message:'Auth Error'})
-            const error = new Error('Invalid Token');
-            next(error);
-        }
-        req.id = decoded;
+        const userid=decoded.id;
+        //
+        req.id = userid;
         next();
     }
     catch (err) {
@@ -48,7 +45,7 @@ app.get('/', (req, res) => {
 
 app.post('/register', async (req, res, next) => {
     try {
-        const { name, password, email, age, gender } = req.body;
+        const { username, password, email, age, gender ,contactInfo} = req.body;
         const existigUser = await User.findOne({ email });
 
         if (existigUser) {
@@ -60,11 +57,12 @@ app.post('/register', async (req, res, next) => {
         console.log("hashedpassword", hashedPassword);
 
         const newUser = new User({
-            name,
+            username,
             password: hashedPassword,
             email,
             gender,
             age,
+            contactInfo
         });
         await newUser.save(); //save the data in database
         res.status(201).json({ message: 'User created successfully' });
@@ -111,7 +109,7 @@ app.post('/login', async (req, res) => {
 })
 
 app.get('/getmyprofile', authenticateToken, async (req, res) => {
-    const { id } = req.body;
+    const id= req.id;
     const user = await User.findById(id);
     user.password = undefined;
     res.status(200).json({ user });
